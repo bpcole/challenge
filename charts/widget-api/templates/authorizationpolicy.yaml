@@ -1,0 +1,15 @@
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-frontend-only
+  namespace: widget-api
+spec:
+  selector:
+    matchLabels:
+      app: widget-api
+  action: ALLOW
+  rules:
+    - from:
+        - source:
+            namespaces:
+              - frontend

@@ -1,0 +1,8 @@
+apiVersion: security.istio.io/v1
+kind: PeerAuthentication
+metadata:
+  name: widget-api-strict-mtls
+  namespace: widget-api
+spec:
+  mtls:
+    mode: STRICT
