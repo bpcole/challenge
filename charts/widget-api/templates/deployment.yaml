@@ -6,7 +6,7 @@ metadata:
   labels:
     app: widget-api
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{.Values.replicaCount}}
   selector:
     matchLabels:
       app: widget-api
@@ -26,7 +26,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: widget-api
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: "{{.Values.image.repository}}:{{.Values.image.tag}}"
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
@@ -39,11 +39,11 @@ spec:
                 - ALL
           resources:
             requests:
-              cpu: {{ .Values.resources.requests.cpu }}
-              memory: {{ .Values.resources.requests.memory }}
+              cpu: {{.Values.resources.requests.cpu}}
+              memory: {{.Values.resources.requests.memory}}
             limits:
-              cpu: {{ .Values.resources.limits.cpu }}
-              memory: {{ .Values.resources.limits.memory }}
+              cpu: {{.Values.resources.limits.cpu}}
+              memory: {{.Values.resources.limits.memory}}
           readinessProbe:
             httpGet:
               path: /readyz
