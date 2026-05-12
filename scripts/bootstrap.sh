@@ -60,7 +60,6 @@ kubectl label namespace frontend istio-injection=enabled --overwrite
 echo "Deploying widget-api..."
 helm upgrade --install widget-api charts/widget-api \
   -n widget-api \
-  --create-namespace \
   --wait
 
 echo "Bootstrap complete."

@@ -12,6 +12,8 @@ spec:
           - resources:
               kinds:
                 - Pod
+              namespaces:
+                - widget-api
       validate:
         message: "Images must come from approved registries."
         foreach:
