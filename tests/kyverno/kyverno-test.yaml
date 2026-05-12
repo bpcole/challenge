@@ -1,4 +1,7 @@
-name: widget-api-policy-tests
+apiVersion: cli.kyverno.io/v1alpha1
+kind: Test
+metadata:
+  name: widget-api-policy-tests
 policies:
   - ../../policies/disallow-latest-tag.yaml
 resources:
@@ -7,12 +10,14 @@ resources:
 results:
   - policy: disallow-latest-tag
     rule: require-image-tag
-    resource: good-deployment
+    resources:
+      - good-deployment
     kind: Pod
     result: skip
 
   - policy: disallow-latest-tag
     rule: require-image-tag
-    resource: bad-deployment-latest
+    resources:
+      - bad-deployment-latest
     kind: Pod
     result: fail
