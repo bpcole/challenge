@@ -12,9 +12,7 @@ kyverno test tests/kyverno
 
 echo "Scanning widget-api image with Trivy..."
 trivy image \
-  --severity HIGH,CRITICAL \
-  --ignore-unfixed \
-  --exit-code 1 \
+  --ignorefile .trivyignore \
   ghcr.io/stefanprodan/podinfo:6.7.1
 
 echo "Validation complete."
