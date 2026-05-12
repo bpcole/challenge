@@ -29,13 +29,12 @@ jobs:
           kubeconform -v
 
       - name: Install Kyverno CLI
-        run: |
-          KYVERNO_VERSION="v1.13.0"
-          curl -LO https://github.com/kyverno/kyverno/releases/download/${KYVERNO_VERSION}/kyverno-cli_${KYVERNO_VERSION#v}_linux_x86_64.tar.gz
-          file kyverno-cli_${KYVERNO_VERSION#v}_linux_x86_64.tar.gz
-          tar -xzf kyverno-cli_${KYVERNO_VERSION#v}_linux_x86_64.tar.gz
-          sudo mv kyverno /usr/local/bin/kyverno
-          kyverno version
+        uses: kyverno/action-install-cli@v0.2.0
+        with:
+          release: 'v1.13.0'
+
+      - name: Check Kyverno CLI
+        run: kyverno version
 
       - name: YAML lint
         run: yamllint .
