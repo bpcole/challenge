@@ -14,14 +14,28 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install tools
+      - name: Install yamllint
         run: |
           sudo apt-get update
           sudo apt-get install -y yamllint
-          curl -L https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz | tar xz
+
+      - name: Install kubeconform
+        run: |
+          KUBECONFORM_VERSION="v0.6.7"
+          curl -LO https://github.com/yannh/kubeconform/releases/download/${KUBECONFORM_VERSION}/kubeconform-linux-amd64.tar.gz
+          file kubeconform-linux-amd64.tar.gz
+          tar -xzf kubeconform-linux-amd64.tar.gz
           sudo mv kubeconform /usr/local/bin/
-          curl -L https://github.com/kyverno/kyverno/releases/latest/download/kyverno-cli_v1.13.0_linux_x86_64.tar.gz | tar xz
+          kubeconform -v
+
+      - name: Install Kyverno CLI
+        run: |
+          KYVERNO_VERSION="v1.13.0"
+          curl -LO https://github.com/kyverno/kyverno/releases/download/${KYVERNO_VERSION}/kyverno-cli_${KYVERNO_VERSION#v}_linux_x86_64.tar.gz
+          file kyverno-cli_${KYVERNO_VERSION#v}_linux_x86_64.tar.gz
+          tar -xzf kyverno-cli_${KYVERNO_VERSION#v}_linux_x86_64.tar.gz
           sudo mv kyverno /usr/local/bin/kyverno
+          kyverno version
 
       - name: YAML lint
         run: yamllint .
