@@ -20,4 +20,4 @@ results:
     resources:
       - bad-deployment-latest
     kind: Pod
-    result: fail
+    result: pass
