@@ -13,7 +13,7 @@ results:
     resources:
       - good-deployment
     kind: Pod
-    result: skip
+    result: pass
 
   - policy: disallow-latest-tag
     rule: require-image-tag
