@@ -37,7 +37,7 @@ jobs:
         run: kyverno version
 
       - name: YAML lint
-        run: yamllint .
+        run: yamllint -f parsable .
 
       - name: Helm template
         run: |
