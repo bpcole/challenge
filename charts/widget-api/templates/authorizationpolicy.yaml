@@ -13,3 +13,11 @@ spec:
         - source:
             namespaces:
               - frontend
+    - from:
+        - source:
+            namespaces:
+              - monitoring
+      to:
+        - operation:
+            paths:
+              - /metrics
